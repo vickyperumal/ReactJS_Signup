@@ -31,6 +31,7 @@ class App extends Component {
       email: null,
       password: null,
       formErrors: {
+        employeeid:"",
         firstName: "",
         lastName: "",
         email: "",
@@ -85,7 +86,7 @@ class App extends Component {
     this.setState({ formErrors, [name]: value }, () => console.log(this.state));
   };
 
-  render() {
+ render() {
     const { formErrors } = this.state;
 
     return (
@@ -93,6 +94,20 @@ class App extends Component {
         <div className="form-wrapper">
           <h1>REGISTER HERE...!!</h1>
           <form onSubmit={this.handleSubmit} noValidate>
+                        <div className="employeeid">
+              <label htmlFor="employeeid">Employee ID</label>
+              <input
+                className={formErrors.employeeid.length > 0 ? "error" : null}
+                placeholder="Employee ID"
+                type="number"
+                name="employeeid"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.firstName.length > 0 && (
+                <span className="errorMessage">{formErrors.employeeid}</span>
+              )}
+            </div>
             <div className="firstName">
               <label htmlFor="firstName">First Name</label>
               <input
